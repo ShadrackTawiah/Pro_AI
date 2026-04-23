@@ -1,0 +1,5 @@
+{
+  "name": "Skofield Pro AI",
+  "description": "A clean, intuitive AI assistant with shopping cart, voice support, and image analysis.",
+  "requestFramePermissions": ["microphone"]
+}

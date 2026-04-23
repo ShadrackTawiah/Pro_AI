@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores basic user information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "User's full name" },
+        "email": { "type": "string", "format": "email", "description": "User's email address" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the user was created" }
+      },
+      "required": ["name", "email", "createdAt"]
+    },
+    "ChatSession": {
+      "title": "Chat Session",
+      "description": "Stores AI conversation history",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Owner of the chat" },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string", "enum": ["user", "model"] },
+              "text": { "type": "string" },
+              "image": { "type": "string" },
+              "timestamp": { "type": "string" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "messages", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection"
+    },
+    "/chats/{chatId}": {
+      "schema": "ChatSession",
+      "description": "AI chat sessions"
+    }
+  }
+}
